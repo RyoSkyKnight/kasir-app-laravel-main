@@ -73,32 +73,50 @@
         </x-card>
 
         <!-- Product Info -->
-        {{-- <x-card>
+        <x-card>
             <div class="flex flex-col space-y-6">
                 <div class="flex flex-col">
-                    <h1 class="font-extrabold pt-2 text-3xl">Product Detail</h1>
+                    <h1 class="font-extrabold pt-2 text-3xl">Product Cart Detail</h1>
                     <p class="text-[0.8rem] pt-0.5 text-gray-500">
-                        Look at the product details and make sure everything is correct.
+                        Look at the product cart details and make sure everything is correct.
                     </p>
                 </div>
 
-                <div class="flex flex-col space-y-6">
-                    <div>
-                        <x-label for="soldStock" value="Sold Stock" />
-                        <x-input disabled id="soldStock" type="number" wire:model.defer="soldStock" placeholder="Sold product stock">
-                            <x-hugeicons-package class="w-[1.1rem] h-[1.1rem]" />
-                        </x-input>
-                    </div>
-
-                    <div>
-                        <x-label for="soldTotalPrice" value="Sold Total Price" />
-                        <x-input-currency disabled id="soldTotalPrice" type="number" wire:model.defer="soldTotalPrice" placeholder="Total sales revenue">
-                            <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
-                        </x-input-currency>
-                    </div>
+             <div wire:ignore>
+                        <table id="cartTable" class="min-w-full text-sm bg-white">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Product Quantity</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($carts as $cart)
+                                    <tr>
+                                        <td>{{ $cart->product->name }}</td>
+                                        <td>{{ $cart->quantity }}</td>
+                                        <td>Rp {{ number_format($cart->total_price, 0, ',', '.') }}</td>    
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                 </div>
+
             </div>
-        </x-card> --}}
+        </x-card>
+
+        <script>
+            document.addEventListener('livewire:navigated', function() {
+    
+    
+                $('#cartTable').DataTable();
+                $('#dt-length-0').removeClass('px-3').addClass('px-6');
+    
+    
+            });
+        </script>
 
     </div>
 </div>
+

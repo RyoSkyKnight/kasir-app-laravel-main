@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class TransactionView extends Component
 {
-    public $product = [], $name = '', $date = '' , $totalPayment =0 , $totalChange = 0 ,$totalPrice = 0, $id;
+    public $carts = [], $name = '', $date = '' , $totalPayment =0 , $totalChange = 0 ,$totalPrice = 0, $id;
 
     public function mount($id)
     {
@@ -25,13 +25,14 @@ class TransactionView extends Component
 
         $this->name = $seelingData->customer_name;
         $this->date = $seelingData->date;
-        $this->totalPrice = $seelingData->total_price;
-        $this->totalPayment = $seelingData->total_payment;
-        $this->totalChange = $seelingData->total_change;
+        $this->totalPrice = (int) $seelingData->total_price;
+        $this->totalPayment = (int) $seelingData->total_payment;
+        $this->totalChange = (int) $seelingData->total_change;
 
 
         //get product on selling detail
-        $this->product = SellingDetail::where('selling_id', $this->id)->get();
+        $this->carts = SellingDetail::with('product')
+        ->where('selling_id', $this->id)->get();
     }
     public function render()
     {

@@ -131,6 +131,9 @@ class MakeTransactionDetail extends Component
     public function confirmTransaction()
     {
         try {
+
+            $this->updatePaidAmount();
+
             DB::transaction(function () {
                 $cart = $this->getCart();
 
@@ -145,16 +148,16 @@ class MakeTransactionDetail extends Component
                         'selling_id' => $this->sellingId,
                         'product_id' => $item['id'],
                         'quantity' => $item['quantity'],
-                        'total_price' => $item['price'] * $item['quantity'],
-                        'total_payment' => $this->paidAmount,
-                        'total_change' => $this->changeAmount,
+                        'total_price' => $item['price'] * $item['quantity']
                     ]);
 
                     $product->decrement('stock', $item['quantity']);
                 }
 
                 Selling::where('id', $this->sellingId)->update([
-                    'total_price' => DB::raw("total_price + {$this->totalPrice}")
+                    'total_price' => DB::raw("total_price + {$this->totalPrice}"),
+                    'total_payment' => $this->paidAmount,
+                    'total_change' => $this->changeAmount,
                 ]);
                 Session::forget("cart_{$this->sellingId}");
             });
