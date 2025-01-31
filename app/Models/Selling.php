@@ -13,6 +13,9 @@ class Selling extends Model
         'customer_name',
         'date',
         'total_price',
+        'total_payment',
+        'total_change',
+        
     ];
 
     //join with user table

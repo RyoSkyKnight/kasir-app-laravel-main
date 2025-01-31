@@ -16,7 +16,7 @@ class AddUserForm extends Form
            $email = '', 
            $password = 'Officer1!', 
            $password_confirmation = 'Officer1!', 
-           $userrole = 'Officer'; // Perbaikan: Gunakan string untuk menangkap role
+           $userrole = 'Officer'; // Fix: Use string to capture role
 
     protected function rules()
     {
@@ -24,31 +24,31 @@ class AddUserForm extends Form
             'name' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Password::defaults()],
-            'userrole' => ['required', 'exists:roles,name'], // Perbaikan: Sesuaikan dengan form
+            'userrole' => ['required', 'exists:roles,name'], // Fix: Adjust with form
         ];
     }
 
     public function createUser()
     {
-        // Validasi data
+        // Validate data
         $this->validate();
 
         try {
-            // Buat user baru
+            // Create new user
             $user = User::create([
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
             ]);
 
-            // Cek apakah role ada di database
+            // Check if role exists in database
             $role = Role::where('name', $this->userrole)->first();
             if (!$role) {
                 throw new \Exception('Role not found');
             }
 
-            // Berikan role kepada user
-            $user->assignRole($role->name); // Pastikan menggunakan `name`, bukan ID
+            // Assign role to user
+            $user->assignRole($role->name); // Make sure to use `name`, not ID
 
             // Flash message
             session()->flash('sweet-alert', [
@@ -56,14 +56,14 @@ class AddUserForm extends Form
                 'title' => 'User successfully created!',
             ]);
 
-            return redirect()->route('user'); // Ganti dengan route yang sesuai
+            return redirect()->route('user'); // Replace with appropriate route
 
         } catch (\Exception $e) {
             // Debugging error
             session()->flash('sweet-alert', [
                 'icon' => 'error',
                 'title' => 'Failed to create user!',
-                'text' => $e->getMessage(), // Tambahkan pesan error agar tahu penyebabnya
+                'text' => $e->getMessage(), // Add error message to know the cause
             ]);
         }
     }

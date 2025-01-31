@@ -22,7 +22,7 @@ class EditProductForm extends Form
 
     public function setEditProduct($id)
     {
-        // Ambil data produk berdasarkan ID dari database
+        // Get product data by ID from database
         $product = Product::find($id);
 
         if (!$product) {
@@ -41,9 +41,9 @@ class EditProductForm extends Form
         $this->price = (int) $product->price;
 
 
-        // Menghitung total produk yang terjual
+        // Calculate total products sold
         $this->soldStock = SellingDetail::where('product_id', $product->id)->sum('quantity');
-        // Menghitung total harga produk yang terjual
+        // Calculate total price of products sold
         $this->soldTotalPrice = SellingDetail::where('product_id', $product->id)->sum('total_price');
     }
 
@@ -52,7 +52,7 @@ class EditProductForm extends Form
         $this->validate();
 
         try {
-            // Update produk di database
+            // Update product in database
             Product::where('id', $this->id)->update([
                 'name' => $this->name,
                 'stock' => $this->stock,
@@ -60,7 +60,7 @@ class EditProductForm extends Form
                 'status' => $this->status,
             ]);
 
-            // Simpan notifikasi di session sebelum redirect
+            // Store notification in session before redirect
             session()->flash('sweet-alert', [
                 'icon' => 'success',
                 'title' => 'Product updated successfully'
@@ -68,7 +68,7 @@ class EditProductForm extends Form
 
             return redirect()->to('/product');
         } catch (\Exception $e) {
-            // Simpan notifikasi di session sebelum redirect jika terjadi kesalahan
+            // Store notification in session before redirect if error occurs
             session()->flash('sweet-alert', [
                 'icon' => 'error',
                 'title' => 'Failed to update product'

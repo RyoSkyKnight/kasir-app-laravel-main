@@ -10,7 +10,7 @@ use App\Models\Selling;
 
 class Dashboard extends Component
 {
-    public $products = []; // Property untuk menyimpan data produk
+    public $products = []; // Property to store product data
     public $totalProducts = 0;
     public $activeProducts = 0;
     public $inactiveProducts = 0;
@@ -18,28 +18,28 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $this->fetchProducts(); // Fetch data saat komponen pertama kali di-load
+        $this->fetchProducts(); // Fetch data when component is first loaded
     }
 
     public function fetchProducts()
     {
         try {
-            // Ambil semua produk dari database
+            // Get all products from database
             $this->products = Product::orderBy('created_at', 'desc')->get();
             $productsCollection = collect($this->products);
     
-            // Hitung total produk
+            // Count total products
             $this->totalProducts = $productsCollection->count();
     
-            // Hitung produk active dan inactive
+            // Count active and inactive products
             $this->activeProducts = $productsCollection->where('status', 'Active')->count();
             $this->inactiveProducts = $productsCollection->where('status', 'Inactive')->count();
 
-            // Hitung total penjualan per tahun
+            // Calculate total sales per year
             $this->totalSalesPerYear = Selling::whereYear('created_at', date('Y'))->sum('total_price');
     
         } catch (\Exception $e) {
-            // Jika terjadi error, reset semua nilai
+            // If error occurs, reset all values
             $this->products = [];
             $this->totalProducts = 0;
             $this->activeProducts = 0;

@@ -2,7 +2,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\User;
-use App\Models\Selling; // Tambahkan model Selling
+use App\Models\Selling; 
 use Spatie\Permission\Models\Role;
 use Livewire\Form;
 use Illuminate\Validation\Rule;
@@ -18,7 +18,7 @@ class EditUserForm extends Form
         return [
             'name' => 'required|min:3',
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->id)],
-            'role' => 'required|exists:roles,name', // Pastikan sesuai dengan tabel roles dari Spatie
+            'role' => 'required|exists:roles,name', // Make sure it matches the roles table from Spatie
         ];
     }
 
@@ -28,13 +28,13 @@ class EditUserForm extends Form
         $this->id = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->role = $user->getRoleNames()->first(); // Mengambil role pertama
+        $this->role = $user->getRoleNames()->first(); 
 
 
-        // Hanya role "Officer" yang memiliki total sales & revenue
+        // Only "Officer" role has total sales & revenue
         if ($this->role === 'Officer') {
-            $this->salesCount = Selling::where('user_id', $id)->count(); // Jumlah transaksi
-            $this->totalRevenue = (int) Selling::where('user_id', $id)->sum('total_price'); // Total pendapatan
+            $this->salesCount = Selling::where('user_id', $id)->count(); // Number of transactions
+            $this->totalRevenue = (int) Selling::where('user_id', $id)->sum('total_price'); // Total revenue
         } else {
             $this->salesCount = 0;
             $this->totalRevenue = 0;
@@ -52,8 +52,8 @@ class EditUserForm extends Form
                 'email' => $this->email,
             ]);
 
-            // Perbarui role menggunakan Spatie
-            $user->syncRoles([$this->role]); // Pastikan hanya satu role yang diberikan
+            // Update role using Spatie
+            $user->syncRoles([$this->role]); 
 
             session()->flash('sweet-alert', [
                 'icon' => 'success',

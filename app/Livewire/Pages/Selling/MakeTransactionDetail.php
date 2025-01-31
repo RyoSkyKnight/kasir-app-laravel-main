@@ -125,11 +125,6 @@ class MakeTransactionDetail extends Component
         $cart = $this->getCart();
         $this->totalPrice = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
     }
-
-    /**
-     * Automatically calculate change when `paidAmount` changes.
-     */
-
     /**
      * Confirm the transaction
      */
@@ -151,6 +146,8 @@ class MakeTransactionDetail extends Component
                         'product_id' => $item['id'],
                         'quantity' => $item['quantity'],
                         'total_price' => $item['price'] * $item['quantity'],
+                        'total_payment' => $this->paidAmount,
+                        'total_change' => $this->changeAmount,
                     ]);
 
                     $product->decrement('stock', $item['quantity']);

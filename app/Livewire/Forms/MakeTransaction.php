@@ -23,32 +23,34 @@ class MakeTransaction extends Form
         $this->validate();
 
         try {
-            // Buat transaksi baru
+            // Create new transaction
             $selling = Selling::create([
                 'user_id' => Auth::id(),
                 'customer_name' => $this->customer_name,
-                'total_price' => 0, // Default 0, akan di-update setelah produk ditambahkan
+                'total_price' => 0, // Default 0, will be updated after products are added
+                'total_payment' => 0, // Default 0, will be updated after payment
+                'total_change' => 0, // Default 0, will be updated after payment
                 'date' => $this->transaction_date,
             ]);
 
-            // Simpan notifikasi di session sebelum redirect
+            // Save notification in session before redirect
             session()->flash('sweet-alert', [
                 'icon' => 'success',
                 'title' => 'Transaction created successfully!'
             ]);
 
-            // Redirect ke halaman detail transaksi untuk menambahkan produk
+            // Redirect to transaction detail page to add products
             return redirect()->route('transaction.add.detail', ['id' => $selling->id]);
 
         } catch (\Exception $e) {
-            // Log error jika terjadi kesalahan
+            // Log error if something goes wrong
             Log::error('Failed to create transaction', [
                 'error' => $e->getMessage(),
                 'user_id' => Auth::id(),
                 'customer_name' => $this->customer_name
             ]);
 
-            // Simpan notifikasi kesalahan di session
+            // Save error notification in session
             session()->flash('sweet-alert', [
                 'icon' => 'error',
                 'title' => 'Failed to create transaction. Please try again.'

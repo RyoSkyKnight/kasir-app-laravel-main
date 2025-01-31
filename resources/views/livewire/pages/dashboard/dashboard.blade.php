@@ -65,11 +65,11 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product['name'] }}</td>
-                                        <td>{{ $product['stock'] }}</td>
-                                        <td>Rp {{ number_format($product['price'], 0, ',', '.') }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->stock }}</td>
+                                        <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                         <td class="py-10">
-                                            @switch($product['status'])
+                                            @switch($product->status)
                                                 @case('Active')
                                                     <span
                                                         class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>

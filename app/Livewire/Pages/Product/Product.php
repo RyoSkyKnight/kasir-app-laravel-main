@@ -20,7 +20,7 @@ class Product extends Component
     public function fetchProducts()
     {
         try {
-            // Ambil semua produk dari database
+            // Get all products from database
             $this->products = ProductModel::orderBy('created_at', 'desc')->get();
         } catch (\Exception $e) {
             $this->products = [];

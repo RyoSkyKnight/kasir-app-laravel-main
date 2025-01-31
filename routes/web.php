@@ -8,6 +8,7 @@ use App\Livewire\Pages\Product\EditProduct;
 use App\Livewire\Pages\Product\Product;
 use App\Livewire\Pages\Selling\MakeTransaction;
 use App\Livewire\Pages\Selling\MakeTransactionDetail;
+use App\Livewire\Pages\Selling\TransactionView;
 use App\Livewire\Pages\Selling\TransactionManagement;
 use App\Livewire\Pages\User\AddUser;
 use App\Livewire\Pages\User\EditUser;
@@ -34,8 +35,10 @@ Route::middleware([
 
     Route::prefix('transaction')->middleware('role:Admin|Officer')->group(function() {
         Route::get('/', TransactionManagement::class)->name('transaction');
+        Route::get('/view/{id}', TransactionView::class)->name('transaction.view');
         Route::get('/add', MakeTransaction::class)->name('transaction.add');
         Route::get('/add/detail/{id}',MakeTransactionDetail::class)->name('transaction.add.detail');
+
     });
 
     Route::prefix('user')->middleware('role:Admin')->group(function() {

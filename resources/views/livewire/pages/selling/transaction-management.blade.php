@@ -43,7 +43,7 @@
                                     <td>{{ $transaction->user->name }}</td>
                                     <td>
                                         <div class="flex flex-row space-x-2">
-                                            <a href="{{ route('transaction', $transaction->id) }}" 
+                                            <a href="{{ route('transaction.view', $transaction->id) }}" 
                                                 class="font-bold rounded p-2 flex items-center hover:bg-gray-100">
                                                 <x-hugeicons-eye class="w-5 h-5" />
                                             </a>

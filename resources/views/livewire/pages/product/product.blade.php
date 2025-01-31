@@ -13,11 +13,11 @@
                     <x-hugeicons-add-circle class="w-[1.1rem] h-[1.1rem]" />
                     <span class="font-bold text-sm">Add Product</span>
                 </a>
-                <button
+                {{-- <button
                     class="flex flex-row items-center space-x-2 py-1 px-2 bg-white text-black border rounded-md h-full">
                     <x-hugeicons-file-01 class="w-[1.1rem] h-[1.1rem]" />
                     <span class="font-bold text-sm">Export</span>
-                </button>
+                </button> --}}
             </div>
         </div>
 
@@ -42,11 +42,11 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{ $product['name'] }}</td>
-                                    <td>{{ $product['stock'] }}</td>
-                                    <td>Rp {{ number_format($product['price'], 0, ',', '.') }}</td>
+                                    <td>{{ $product->name}}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td>
-                                        @switch($product['status'])
+                                        @switch($product->status)
                                             @case('Active')
                                                 <span
                                                     class="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>
@@ -69,7 +69,7 @@
                                     </td>
                                     <td>
                                         <div class="flex flex-row space-x-2">
-                                            <a href="{{ route('product.edit', ['id' => $product['id']]) }}" wire:current
+                                            <a href="{{ route('product.edit', $product->id) }}" wire:current
                                                 class="font-bold rounded  p-2 flex items-center space-x-2">
                                                 <x-hugeicons-pencil-edit-02 style="width:1.5rem; height:1.5rem;" />
                                             </a>                                            
