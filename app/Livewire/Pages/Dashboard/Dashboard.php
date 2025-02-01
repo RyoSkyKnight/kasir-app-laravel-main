@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 use App\Models\Product;
 use App\Models\Selling;
+use App\Models\SellingDetail;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
     public $products = []; // Property to store product data
+    public $topSellers = []; // Property to store top seller data
     public $totalProducts = 0;
     public $activeProducts = 0;
     public $inactiveProducts = 0;
@@ -19,6 +22,7 @@ class Dashboard extends Component
     public function mount()
     {
         $this->fetchProducts(); // Fetch data when component is first loaded
+        $this->topSellerList();
     }
 
     public function fetchProducts()
@@ -45,6 +49,21 @@ class Dashboard extends Component
             $this->activeProducts = 0;
             $this->inactiveProducts = 0;
         }
+    }
+
+    public function topSellerList(){
+
+        $this->topSellers = SellingDetail::with('product')
+        ->select(
+            'product_id', 
+            DB::raw('SUM(quantity) as total_sold'),
+            DB::raw('SUM(total_price) as total_price') // Use total_price instead of quantity * price
+        )
+        ->groupBy('product_id')
+        ->orderByDesc('total_sold')
+        ->get();
+    
+    
     }
     
     public function render()

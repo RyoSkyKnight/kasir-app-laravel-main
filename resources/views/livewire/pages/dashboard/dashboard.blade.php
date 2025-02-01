@@ -5,6 +5,8 @@
         </x-slot>
         <!-- Cards Section -->
         <div class="flex flex-row justify-evenly w-auto space-x-6">
+
+            
             <x-card>
                 <div class="flex flex-col">
                     <div class="flex flex-row justify-between">
@@ -44,6 +46,38 @@
                 </div>
             </x-card>
         </div>
+
+        <x-card class="w-full flex flex-col space-y-6">
+            <div class="flex flex-col">
+                <h1 class="font-extrabold pt-2 text-3xl">Top Selling Product</h1>
+                <p class="text-[0.8rem] pt-0.5 text-gray-500">A list of top high sold product </p>
+            </div>
+            <div class="overflow-x-auto">
+                <ul class="divide-y divide-gray-200">
+                    @foreach ($topSellers as $index => $top)
+                        <li class="flex items-center justify-between py-2 hover:bg-gray-50 px-4 rounded-lg">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center justify-center w-8 h-8 {{ $index < 3 ? 'bg-yellow-100' : 'bg-gray-100' }} rounded-full">
+                                    <span class="{{ $index < 3 ? 'text-yellow-800' : 'text-gray-600' }} font-bold">
+                                        #{{ $index + 1 }}
+                                    </span>
+                                </span>
+                                <span class="text-md text-gray-700 font-bold">{{ $top->product->name }}</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">
+                                    Rp {{ number_format($top->total_price, 0, ',', '.') }}
+                                </span>
+                                <span class="px-3 py-1 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full">
+                                    {{ $top->total_sold }} sold
+                                </span>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+           
+        </x-card>
 
         <!-- Product Table Section -->
         <div class="w-full">

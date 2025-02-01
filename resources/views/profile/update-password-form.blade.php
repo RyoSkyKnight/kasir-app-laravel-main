@@ -1,4 +1,4 @@
-<x-form-section submit="updatePassword">
+<x-form-profile submit="updatePassword">
     <x-slot name="title">
         {{ __('Update Password') }}
     </x-slot>
@@ -36,4 +36,4 @@
             {{ __('Save') }}
         </x-button>
     </x-slot>
-</x-form-section>
+</x-form-profile>
