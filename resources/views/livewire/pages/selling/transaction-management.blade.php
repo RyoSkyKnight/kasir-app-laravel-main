@@ -1,5 +1,5 @@
 <div>
-    <div wire:key="transaction-management" class="flex flex-col space-y-6">
+    <div wire:key="transaction-management" class="flex flex-col space-y-6" wire:poll.5s="getTransactions">
         <x-slot name="header">
             {{ __('Transaction Management') }}
         </x-slot>

@@ -12,11 +12,11 @@ class TransactionManagement extends Component
    
     public function mount()
     {
-        $this->getTransaction();
+        $this->getTransactions();
     }
     
     //** Get Data */
-    public function getTransaction()
+    public function getTransactions()
     {
         $this->transactions = Selling::with('user')
             ->where('total_price', '!=', 0)

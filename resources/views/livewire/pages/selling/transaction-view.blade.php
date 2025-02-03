@@ -7,7 +7,7 @@
         </div>
     </x-slot>
 
-    <div class="w-full flex flex-col space-y-6">
+    <div class="w-full flex flex-col space-y-6" wire:poll.5s="getSellingDataProduct">
         <!-- Transaction Overview Form -->
         <x-card>
             <div class="flex flex-col space-y-6">

@@ -1,5 +1,5 @@
 <div>
-    <div wire:key="product-management" class="flex flex-col space-y-6">
+    <div wire:key="product-management" class="flex flex-col space-y-6" wire:poll.5s="fetchProducts">
         <x-slot name="header">
             {{ __('Product Management') }}
         </x-slot>

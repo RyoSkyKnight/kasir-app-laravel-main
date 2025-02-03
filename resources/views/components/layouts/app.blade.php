@@ -40,7 +40,7 @@
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-gray-50 bg-opacity-95 fixed w-full z-[10000]">
-                <div class="w-auto max-w-7xl py-6 pl-[2rem]">
+                <div class="w-auto py-6 pl-[2rem] pr-[5rem]">
                     <div class="flex flex-row space-x-2 justify-between">
                         <h2
                             class="font-normal text-[1.2rem] text-gray-800 leading-tight text-left flex flex-row gap-2 w-auto justify-center">
@@ -52,6 +52,7 @@
                         <div class="flex flex-row space-x-1 items-center">
                             <x-hugeicons-user class="w-[1.1rem] h-[1.1rem]" />
                             <p class="text-sm">{{ Auth::user()->name }}</p>
+                            <livewire:components.notification-modal/>
                         </div>
                     </div>
                 </div>

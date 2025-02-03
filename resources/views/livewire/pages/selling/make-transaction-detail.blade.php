@@ -132,7 +132,7 @@
                             <x-input-currency 
                                 id="paidAmount"
                                 type="number"
-                                wire:model.live="paidAmount"
+                                wire:model="paidAmount"
                                 placeholder="Enter paid amount"
                             >
                                 <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
@@ -190,7 +190,7 @@
             :sellingId="$sellingId"
             :cartItems="session('cart_' . $sellingId, [])"
             :totalPrice="$totalPrice"
-            :paidAmount={{ $paidAmount }}
+            :paidAmount="$paidAmount"
             :changeAmount="$changeAmount"
         />
     </div>
@@ -198,16 +198,8 @@
 
  <!-- SweetAlert & Livewire Navigation Confirmation -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
         let isTransactionActive = true;
 
-
-        window.addEventListener("beforeunload", function(event) {
-            if (isTransactionActive) {
-                event.preventDefault();
-                event.returnValue = '';
-            }
-        });
         document.addEventListener("livewire:navigate", function(event) {
             if (!isTransactionActive) return;
             event.preventDefault();
@@ -229,7 +221,7 @@
                     Livewire.dispatch('forceCloseTransaction');
                     setTimeout(() => {
                         isTransactionActive = false;
-                    }, 500);
+                    }, 100);
                 } else {
                     Swal.fire({
                         title: 'Cancelled',
@@ -239,5 +231,4 @@
                 }
             });
         });
-    });
 </script>

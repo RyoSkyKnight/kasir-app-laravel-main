@@ -1,5 +1,5 @@
 <div>
-    <div wire:key="user-management" class="flex flex-col space-y-6">
+    <div wire:key="user-management" class="flex flex-col space-y-6" wire:poll.5s="fetchUsers">
         <x-slot name="header">
             {{ __('User Management') }}
         </x-slot>
