@@ -1,11 +1,12 @@
-<div wire:poll.500s="fetchLowStockProducts">
+<div wire:poll="fetchLowStockProducts">
     <!-- Notification Button -->
     <div class="relative">
         <button wire:click="toggleModal" class="relative flex items-center px-1">
-            <x-hugeicons-notification-02 class="w-5 h-5" />
+            <x-hugeicons-notification-02 class="w-5 h-5  {{ $hasNotification ? 'animate-shake' : ''}}" />
             
             @if ($hasNotification)
                 <span class="absolute top-0 right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                <span class="absolute top-0 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             @endif
         </button>
     </div>
