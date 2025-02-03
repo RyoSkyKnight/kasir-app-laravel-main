@@ -1,7 +1,7 @@
 <div>
-    <div wire:key="user-management" class="flex flex-col space-y-6">
+    <div wire:key="transaction-management" class="flex flex-col space-y-6">
         <x-slot name="header">
-            {{ __('User Management') }}
+            {{ __('Transaction Management') }}
         </x-slot>
 
         <!-- Tabs -->
@@ -43,11 +43,11 @@
                                     <td>{{ $transaction->user->name }}</td>
                                     <td>
                                         <div class="flex flex-row space-x-2">
-                                            <a href="{{ route('transaction.view', $transaction->id) }}" 
+                                            <a href="{{ route('transaction.view', $transaction->id) }}"
                                                 class="font-bold rounded p-2 flex items-center hover:bg-gray-100">
                                                 <x-hugeicons-eye class="w-5 h-5" />
                                             </a>
-                                         
+
                                         </div>
                                     </td>
                                 </tr>
@@ -59,12 +59,10 @@
         </div>
     </div>
     <script>
-        
-document.addEventListener('livewire:navigated', function () {
-    $('#transactionTable').DataTable();
-    $('#dt-length-0').removeClass('px-3').addClass('px-6');
-});
-
+        document.addEventListener('livewire:navigated', function() {
+            $('#transactionTable').DataTable();
+            $('#dt-length-0').removeClass('px-3').addClass('px-6');
+        });
     </script>
 
 </div>

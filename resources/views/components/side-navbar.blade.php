@@ -17,7 +17,7 @@
                 </a>
             </li>
 
-            @if(Auth::user()->hasRole('Officer'))
+            @if(Auth::user()->hasRole('Officer' || 'Admin'))
             <li>
                 <a href="{{ route('product') }}" wire:navigate
                     class="flex items-center px-2 py-2 text-gray-600 hover:bg-gray-100 hover:rounded-full hover:text-gray-900 transition-colors
