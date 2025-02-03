@@ -221,7 +221,7 @@
                     Livewire.dispatch('forceCloseTransaction');
                     setTimeout(() => {
                         isTransactionActive = false;
-                    }, 100);
+                    }, 50);
                 } else {
                     Swal.fire({
                         title: 'Cancelled',
