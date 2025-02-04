@@ -13,6 +13,7 @@
     <input 
         type="text"
         id="{{ $id }}"
+        placeholder="Rp 0"
         class="currencyInput border-gray-400 focus:border-gray-500 focus:ring-black rounded-md w-full {{ $slot->isNotEmpty() ? ' pl-10' : '' }}"
         {{ $disabled ? 'disabled' : '' }}
         oninput="formatCurrency(this)"
