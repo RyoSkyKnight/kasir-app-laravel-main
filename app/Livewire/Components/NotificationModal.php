@@ -6,9 +6,8 @@ use App\Models\Product;
 
 class NotificationModal extends Component
 {
-    public $lowStockProducts = []; // Produk dengan stok < 5
-    public $showModal = false; // Status modal
-    public $hasNotification = false; // Indikator titik merah di tombol
+    public $lowStockProducts = []; // Products with stock < 5
+    public $hasNotification = false; // Red dot indicator on button
 
     public function mount()
     {
@@ -17,24 +16,10 @@ class NotificationModal extends Component
 
     public function fetchLowStockProducts()
     {
-      // Ambil produk dengan stok < 5
-      $this->lowStockProducts = Product::where('stock', '<', 5)->get();
-
-      // Notifikasi muncul jika ada produk dengan stok rendah
-      if (!$this->showModal) {
-      $this->hasNotification = collect($this->lowStockProducts)->isNotEmpty();
-      }
-    }
-
-    public function toggleModal()
-    {
-        $this->showModal = !$this->showModal;
-
-        // Notifikasi tetap ada meskipun modal dibuka
-        if ($this->showModal) {
-            $this->fetchLowStockProducts();
-            $this->hasNotification = false;
-        }
+        // Get products with stock < 5
+        $this->lowStockProducts = Product::where('stock', '<', 5)->get();
+        // Check if there are products with stock < 5
+        $this->hasNotification = collect($this->lowStockProducts)->isNotEmpty();
     }
 
     public function render()

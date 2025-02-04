@@ -1,17 +1,6 @@
-@props(['disabled' => false])
+@props(['disabled' => false, 'id' => 'currencyInput'])
 
-<div x-data="{
-        rawValue: @entangle($attributes->wire('model')),
-        formattedValue: '',
-        formatCurrency(value) {
-            // Handle string or number input
-            let num = typeof value === 'string' ? value.replace(/\D/g, '') : value.toString();
-            // Keep original number without parsing to preserve leading zeros
-            return num ? 'Rp ' + num.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
-        }
-    }"
-    x-init="formattedValue = formatCurrency(rawValue)"
-    class="relative w-full">
+<div class="relative w-full">
     
     <!-- Icon -->
     @if ($slot->isNotEmpty())
@@ -23,16 +12,16 @@
     <!-- Input Field -->
     <input 
         type="text"
-        {{ $disabled ? 'disabled' : '' }} 
-        x-model="formattedValue"
-        x-on:input="
-            rawValue = $event.target.value.replace(/\D/g, '');
-            formattedValue = formatCurrency(rawValue);"
-        x-on:blur="formattedValue = formatCurrency(rawValue);"
-        x-on:focus="formattedValue = rawValue;"
-        wire:model.defer="{{ $attributes->wire('model')->value() }}"
-        {!! $attributes->merge([
-            'class' => 'border-gray-400 focus:border-gray-500 focus:ring-black rounded-md w-full' . 
-            ($slot->isNotEmpty() ? ' pl-10' : '')
-        ]) !!}>
+        id="{{ $id }}"
+        class="currencyInput border-gray-400 focus:border-gray-500 focus:ring-black rounded-md w-full {{ $slot->isNotEmpty() ? ' pl-10' : '' }}"
+        {{ $disabled ? 'disabled' : '' }}
+        oninput="formatCurrency(this)"
+        wire:model.defer="{{ $attributes->wire('model')->value() }}">
 </div>
+<script>
+    function formatCurrency(input) {
+        let value = input.value.replace(/\D/g, ""); // Hapus karakter non-numeric
+        let formatted = new Intl.NumberFormat('id-ID').format(value); // Format angka dengan titik
+        input.value = value ? "Rp " + formatted : ""; // Tambahkan Rp di depan
+    }
+</script>
