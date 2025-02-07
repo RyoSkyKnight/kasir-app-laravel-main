@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class input-currency extends Component
+class InputCurrency extends Component
 {
     /**
      * Create a new component instance.

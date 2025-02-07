@@ -67,7 +67,6 @@
             </div>
         </x-card>
 
-        @if($form->role === 'Officer')
         <x-card>
             <div class="flex flex-col space-y-6">
                 <!-- Header -->
@@ -96,10 +95,7 @@
                 </div>
             </div>
         </x-card>
-    @endif
     
-
-
         <!-- Delete User Card -->
         <x-card>
             <h1 class="text-red-600 font-extrabold pt-2 text-3xl">Danger Zone</h1>

@@ -31,14 +31,9 @@ class EditUserForm extends Form
         $this->role = $user->getRoleNames()->first(); 
 
 
-        // Only "Officer" role has total sales & revenue
-        if ($this->role === 'Officer') {
+    
             $this->salesCount = Selling::where('user_id', $id)->count(); // Number of transactions
             $this->totalRevenue = (int) Selling::where('user_id', $id)->sum('total_price'); // Total revenue
-        } else {
-            $this->salesCount = 0;
-            $this->totalRevenue = 0;
-        }
     }
 
     public function updateUser()
