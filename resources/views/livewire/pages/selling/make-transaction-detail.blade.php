@@ -17,7 +17,7 @@
             <div class="flex flex-col space-y-6">
                 <!-- Header Section -->
                 <div class="flex flex-col">
-                    <h1 class="font-extrabold pt-2 text-3xl">Transaction</h1>
+                    <h1 class="font-extrabold pt-2 text-3xl">Transaction <span class="text-gray-500 font-medium text-[1rem]"> for {{ $customerName }}</span></h1>
                     <p class="text-[0.8rem] pt-0.5 text-gray-500">
                         Create a new transaction by selecting products and quantities.
                     </p>
@@ -192,6 +192,7 @@
             :totalPrice="$totalPrice"
             :paidAmount="$paidAmount"
             :changeAmount="$changeAmount"
+            :customerName="$customerName"
         />
     </div>
 </div>
