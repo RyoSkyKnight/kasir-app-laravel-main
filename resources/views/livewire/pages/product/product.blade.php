@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td>{{ $product->name}}</td>
+                                    <td>{{ $product->name }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td>
@@ -72,7 +72,7 @@
                                             <a href="{{ route('product.edit', $product->id) }}" wire:current
                                                 class="font-bold rounded  p-2 flex items-center space-x-2">
                                                 <x-hugeicons-pencil-edit-02 style="width:1.5rem; height:1.5rem;" />
-                                            </a>                                            
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -80,25 +80,18 @@
                         </tbody>
                     </table>
 
-                    
+
                 </div>
             </x-card>
         </div>
     </div>
     <x-sweet-alert.confirm-delete-product />
     <script>
-        
-        document.addEventListener('livewire:navigated', function () {
-       
+        document.addEventListener('livewire:navigated', function() {
+
             $('#productTable').DataTable();
             $('#dt-length-0').removeClass('px-3').addClass('px-6');
 
-            Livewire.on('productDeleted', (id) => {
-            let productTable = $('#productTable').DataTable();
-            productTable.row($(`button[data-id="${id}"]`).parents('tr')).remove().draw();
-            });    
-
-            
         });
-        </script>
-    </div>
+    </script>
+</div>
