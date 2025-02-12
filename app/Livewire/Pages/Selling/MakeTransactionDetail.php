@@ -18,6 +18,7 @@ class MakeTransactionDetail extends Component
     public $quantity = 1;
     public $paidAmount = 0;
     public $changeAmount = 0;
+    public $customerName = '';
     protected $listeners = ['forceCloseTransaction'];
 
 
@@ -34,6 +35,7 @@ class MakeTransactionDetail extends Component
         $this->sellingId = $id;
         $this->products = Product::all();
         $this->updateTotalPrice();
+        $this->customerName = Selling::find($id)->customer_name;
     }
 
     /**
