@@ -61,6 +61,7 @@ class Dashboard extends Component
         )
         ->groupBy('product_id')
         ->orderByDesc('total_sold')
+        ->limit(5)
         ->get();
     
     
