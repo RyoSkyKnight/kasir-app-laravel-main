@@ -1,4 +1,4 @@
-@props(['sellingId', 'cartItems', 'totalPrice', 'paidAmount', 'changeAmount'])
+@props(['sellingId', 'cartItems', 'totalPrice', 'paidAmount', 'changeAmount' , 'customerName'])
 
 <div id="print-form" class="">
     <div id="receipt" class="w-64 mx-auto font-mono text-sm leading-tight">
@@ -7,6 +7,10 @@
             <div class="font-bold">RECEIPT</div>
             <div class="text-xs">{{ now()->setTimezone('Asia/Jakarta')->format('d/m/Y H:i') }}</div>
             <div class="text-xs">#{{ $sellingId }}</div>
+            <div class="text-xs mb-2">
+                <div>Customer: {{ $customerName }}</div>
+                <div>Cashier: {{ Auth::user()->name }}</div>
+            </div>
         </div>
 
         <!-- Separator -->
@@ -30,8 +34,8 @@
 
         <!-- Totals -->
         <div class="space-y-1">
-            <div class="flex justify-between">
-                <div>TOTAL</div>
+            <div class="flex justify-between font-bold">
+                <div >TOTAL</div>
                 <div>Rp {{ number_format($totalPrice, 0, ',', '.') }}</div>
             </div>
             <div class="flex justify-between">
