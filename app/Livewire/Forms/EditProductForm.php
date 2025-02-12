@@ -44,7 +44,7 @@ class EditProductForm extends Form
         // Calculate total products sold
         $this->soldStock = SellingDetail::where('product_id', $product->id)->sum('quantity');
         // Calculate total price of products sold
-        $this->soldTotalPrice = SellingDetail::where('product_id', $product->id)->sum('total_price');
+        $this->soldTotalPrice = (int) SellingDetail::where('product_id', $product->id)->sum('total_price');
     }
 
     public function updateProduct()
