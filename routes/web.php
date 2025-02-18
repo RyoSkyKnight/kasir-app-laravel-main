@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Export\Transaction\ToExcel;
+use App\Livewire\Export\Product\ToExcel as ProductExcel;
 use App\Livewire\MakeTransactionDetail as LivewireMakeTransactionDetail;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\Dashboard\Dashboard;
@@ -31,6 +33,7 @@ Route::middleware([
         Route::get('/add', AddProduct::class)->name('product.add');
         Route::get('/edit/{id}', EditProduct::class)->name('product.edit');
         Route::put('/update/{id}', [EditProduct::class, 'updateProduct'])->name('product.update');
+        Route::get('/export', ProductExcel::class)->name('product.export');
     });
 
     Route::prefix('transaction')->middleware('role:Admin|Officer')->group(function() {
@@ -38,6 +41,7 @@ Route::middleware([
         Route::get('/view/{id}', TransactionView::class)->name('transaction.view');
         Route::get('/add', MakeTransaction::class)->name('transaction.add');
         Route::get('/add/detail/{id}',MakeTransactionDetail::class)->name('transaction.add.detail');
+        Route::get('/export', ToExcel::class)->name('transaction.export');
 
     });
 

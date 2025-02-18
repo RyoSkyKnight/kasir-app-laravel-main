@@ -13,11 +13,12 @@
                     <x-hugeicons-add-circle class="w-[1.1rem] h-[1.1rem]" />
                     <span class="font-bold text-sm">Add Product</span>
                 </a>
-                {{-- <button
+
+                <a href="{{ route('product.export') }}" wire:navigate
                     class="flex flex-row items-center space-x-2 py-1 px-2 bg-white text-black border rounded-md h-full">
                     <x-hugeicons-file-01 class="w-[1.1rem] h-[1.1rem]" />
                     <span class="font-bold text-sm">Export</span>
-                </button> --}}
+                </a>
             </div>
         </div>
 

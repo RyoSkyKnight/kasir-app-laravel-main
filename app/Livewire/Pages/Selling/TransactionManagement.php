@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Selling;
 
 use App\Models\Selling;
 use Livewire\Component;
+use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class TransactionManagement extends Component
 {
@@ -23,6 +24,7 @@ class TransactionManagement extends Component
             ->orderBy('created_at', 'desc')
             ->get();
     }
+
 
     public function render()
     {
