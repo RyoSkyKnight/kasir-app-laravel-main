@@ -24,7 +24,7 @@
                         <!-- Name -->
                         <div>
                             <x-label for="name" value="Name" />
-                            <x-input id="name" type="text" wire:model.defer="form.name" placeholder="John Doe">
+                            <x-input id="name" type="text" wire:model.blur="form.name" placeholder="John Doe">
                                 <x-hugeicons-user class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.name" class="mt-2" />
@@ -33,7 +33,7 @@
                         <!-- Email -->
                         <div>
                             <x-label for="email" value="Email" />
-                            <x-input id="email" type="email" wire:model.defer="form.email" placeholder="jhondoe@gmail.com">
+                            <x-input id="email" type="email" wire:model.blur="form.email" placeholder="jhondoe@gmail.com">
                                 <x-hugeicons-mail-at-sign-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.email" class="mt-2" />
@@ -42,7 +42,7 @@
                         <!-- Password -->
                         <div class="relative">
                             <x-label for="password" value="Password" />
-                            <x-input id="password" type="text" wire:model.defer="form.password" placeholder="Enter password" disabled>
+                            <x-input id="password" type="text" wire:model.blur="form.password" placeholder="Enter password" disabled>
                                 <x-hugeicons-lock-key class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.password" class="mt-2" />
@@ -51,7 +51,7 @@
                         <!-- Confirm Password -->
                         <div class="relative">
                             <x-label for="password_confirmation" value="Confirm Password" />
-                            <x-input id="password_confirmation" type="text" wire:model.defer="form.password_confirmation" placeholder="Re-enter password" disabled>
+                            <x-input id="password_confirmation" type="text" wire:model.blur="form.password_confirmation" placeholder="Re-enter password" disabled>
                                 <x-hugeicons-lock-key class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.password_confirmation" class="mt-2" />
@@ -61,7 +61,7 @@
                         <div>
                             <x-label for="role" value="User Role" />
                             <x-select name="role" :options="$roles"
-                                class="mt-2 h-full" wire:model.defer="form.userrole">
+                                class="mt-2 h-full" wire:model.blur="form.userrole">
                                 <x-hugeicons-mentoring class="w-[1.1rem] h-[1.1rem]" />
                             </x-select>
                             <x-input-error for="form.userrole" class="mt-2" />

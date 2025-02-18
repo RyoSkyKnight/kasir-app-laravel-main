@@ -15,8 +15,8 @@ class EditProductForm extends Form
 
     protected $rules = [
         'name' => 'required|min:3',
-        'stock' => 'required|numeric|min:0',
-        'price' => 'required|numeric|min:0',
+        'stock' => 'required|numeric|min:1',
+        'price' => 'required|numeric|min:1',
         'status' => 'required',
     ];
 

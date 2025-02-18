@@ -24,6 +24,7 @@ class AddUserForm extends Form
             'name' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Password::defaults()],
+            'password_confirmation' => ['required', 'same:password'],
             'userrole' => ['required', 'exists:roles,name'], // Fix: Adjust with form
         ];
     }

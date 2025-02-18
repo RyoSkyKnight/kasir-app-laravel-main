@@ -44,7 +44,7 @@
             </div>
             <div class="flex justify-between">
                 <div>CHANGE</div>
-                <div>Rp {{ number_format($changeAmount, 0, ',', '.') }}</div>
+                <div>Rp {{ number_format($paidAmount - $totalPrice, 0, ',', '.') }}</div>
             </div>
         </div>
 

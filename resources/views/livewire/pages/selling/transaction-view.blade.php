@@ -22,7 +22,7 @@
                     <div class="flex flex-col space-y-6">
                         <div>
                             <x-label for="name" value="Customer Name" />
-                            <x-input id="name" type="text" wire:model.defer="name" disabled >
+                            <x-input id="name" type="text" wire:model.blur="name" disabled >
                                 <x-hugeicons-user class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="name" class="mt-2" />
@@ -30,7 +30,7 @@
 
                         <div>
                             <x-label for="date" value="Transaction Date" />
-                            <x-input id="date" type="date" wire:model.defer="date" disabled >
+                            <x-input id="date" type="date" wire:model.blur="date" disabled >
                                 <x-hugeicons-calendar-download-02 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="date" class="mt-2" />
@@ -38,7 +38,7 @@
 
                         <div>
                             <x-label for="totalPrice" value="Total Price" />
-                            <x-input-currency id="totalPrice" type="number" wire:model.defer="totalPrice" disabled >
+                            <x-input-currency id="totalPrice" type="number" wire:model.blur="totalPrice" disabled >
                                  <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input-currency>
                             <x-input-error for="totalPrice" class="mt-2" />
@@ -46,7 +46,7 @@
 
                         <div>
                             <x-label for="totalPayment" value="Total Payment" />
-                            <x-input-currency id="totalPayment" type="number" wire:model.defer="totalPayment" disabled >
+                            <x-input-currency id="totalPayment" type="number" wire:model.blur="totalPayment" disabled >
                                  <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input-currency>
                             <x-input-error for="totalPayment" class="mt-2" />
@@ -54,7 +54,7 @@
 
                         <div>
                             <x-label for="totalChange" value="Total Change" />
-                            <x-input-currency id="totalChange" type="number" wire:model.defer="totalChange" disabled >
+                            <x-input-currency id="totalChange" type="number" wire:model.blur="totalChange" disabled >
                                  <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input-currency>
                             <x-input-error for="totalChange" class="mt-2" />

@@ -22,7 +22,7 @@
                     <div class="flex flex-col space-y-6">
                         <div>
                             <x-label for="name" value="Product Name" />
-                            <x-input id="name" type="text" wire:model.defer="form.name" placeholder="Enter product name">
+                            <x-input id="name" type="text" wire:model.blur="form.name" placeholder="Enter product name">
                                 <x-hugeicons-apple-reminder class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.name" class="mt-2" />
@@ -30,7 +30,7 @@
 
                         <div>
                             <x-label for="stock" value="Stock" />
-                            <x-input id="stock" type="number" wire:model.defer="form.stock" placeholder="Enter product stock">
+                            <x-input id="stock" type="number" wire:model.blur="form.stock" placeholder="Enter product stock">
                                 <x-hugeicons-package class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.stock" class="mt-2" />
@@ -38,7 +38,7 @@
 
                         <div>
                             <x-label for="price" value="Price" />
-                            <x-input-currency id="price" type="number" wire:model.defer="form.price" placeholder="Enter product price">
+                            <x-input-currency id="price" type="number" wire:model.blur="form.price" placeholder="Enter product price">
                                 <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input-currency>
                             <x-input-error for="form.price" class="mt-2" />
@@ -46,7 +46,7 @@
 
                         <div>
                             <x-label for="status" value="Status" />
-                            <x-select name="status" :options="['Active' => 'Active', 'Inactive' => 'Inactive', 'Draft' => 'Draft', '']" class="mt-2 h-full" wire:model.defer="form.status">
+                            <x-select name="status" :options="['Active' => 'Active', 'Inactive' => 'Inactive', 'Draft' => 'Draft', '']" class="mt-2 h-full" wire:model.blur="form.status">
                                 <x-hugeicons-dashboard-circle-edit class="w-[1.1rem] h-[1.1rem]" />
                             </x-select>
                             <x-input-error for="form.status" class="mt-2" />
@@ -83,14 +83,14 @@
                 <div class="flex flex-col space-y-6">
                     <div>
                         <x-label for="soldStock" value="Sold Stock" />
-                        <x-input disabled id="soldStock" type="number" wire:model.defer="form.soldStock" placeholder="Sold product stock">
+                        <x-input disabled id="soldStock" type="number" wire:model.blur="form.soldStock" placeholder="Sold product stock">
                             <x-hugeicons-package class="w-[1.1rem] h-[1.1rem]" />
                         </x-input>
                     </div>
 
                     <div>
                         <x-label for="soldTotalPrice" value="Sold Total Price" />
-                        <x-input-currency disabled id="soldTotalPrice" type="number" wire:model.defer="form.soldTotalPrice" placeholder="Total sales revenue">
+                        <x-input-currency disabled id="soldTotalPrice" type="number" wire:model.blur="form.soldTotalPrice" placeholder="Total sales revenue">
                             <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                         </x-input-currency>
                     </div>

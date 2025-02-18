@@ -22,7 +22,7 @@
                     <div class="flex flex-col space-y-6">
                         <div>
                             <x-label for="name" value="Full Name" />
-                            <x-input id="name" type="text" wire:model.defer="form.name" placeholder="Enter full name">
+                            <x-input id="name" type="text" wire:model.blur="form.name" placeholder="Enter full name">
                                 <x-hugeicons-user class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.name" class="mt-2" />
@@ -30,7 +30,7 @@
 
                         <div>
                             <x-label for="email" value="Email Address" />
-                            <x-input id="email" type="email" wire:model.defer="form.email" placeholder="Enter email">
+                            <x-input id="email" type="email" wire:model.blur="form.email" placeholder="Enter email">
                                 <x-hugeicons-mail-at-sign-01 class="w-[1.1rem] h-[1.1rem]" />
                             </x-input>
                             <x-input-error for="form.email" class="mt-2" />
@@ -39,7 +39,7 @@
                         <div>
                             <x-label for="role" value="User Role" />
                             <x-select name="role" :options="$roles"
-                                class="mt-2 h-full" wire:model.defer="form.role">
+                                class="mt-2 h-full" wire:model.blur="form.role">
                                 <x-hugeicons-mentoring class="w-[1.1rem] h-[1.1rem]" />
                             </x-select>
                             <x-input-error for="form.role" class="mt-2" />
@@ -81,14 +81,14 @@
                 <div class="flex flex-col space-y-6">
                     <div>
                         <x-label for="salesCount" value="Total Sales Count" />
-                        <x-input disabled id="salesCount" type="number" wire:model.defer="form.salesCount" placeholder="Total product sales">
+                        <x-input disabled id="salesCount" type="number" wire:model.blur="form.salesCount" placeholder="Total product sales">
                             <x-hugeicons-package class="w-[1.1rem] h-[1.1rem]" />
                         </x-input>
                     </div>
     
                     <div>
                         <x-label for="totalRevenue" value="Total Sales Revenue" />
-                        <x-input-currency disabled id="totalRevenue" type="number" wire:model.defer="form.totalRevenue" placeholder="Total revenue generated">
+                        <x-input-currency disabled id="totalRevenue" type="number" wire:model.blur="form.totalRevenue" placeholder="Total revenue generated">
                             <x-hugeicons-sale-tag-01 class="w-[1.1rem] h-[1.1rem]" />
                         </x-input-currency>
                     </div>

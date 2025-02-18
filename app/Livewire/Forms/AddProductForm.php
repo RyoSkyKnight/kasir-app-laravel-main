@@ -7,6 +7,7 @@ use Livewire\Form;
 
 class AddProductForm extends Form
 {
+    
     // Define nullable Product model property
     public ?Product $product = null;
 
@@ -16,8 +17,8 @@ class AddProductForm extends Form
     // Validation rules for form fields
     protected $rules = [
         'name' => 'required|min:3',          
-        'stock' => 'required|numeric|min:0',  
-        'price' => 'required|numeric|min:0',  
+        'stock' => 'required|numeric|min:1',  
+        'price' => 'required|numeric|min:1',  
     ];
 
     public function addProduct()
